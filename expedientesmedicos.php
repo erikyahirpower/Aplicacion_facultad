@@ -23,6 +23,14 @@ if (isset($_GET['id'])) {
 </head>
 <body class="fondo-main">
     <br><br>
+    
+    <!-- Botón de regreso al menú principal -->
+    <div class="container">
+        <a href="index.php" class="btn btn-secondary mb-3">
+            <i class="fas fa-home"></i> Menú Principal
+        </a>
+    </div>
+    
     <h2 align="center" class="titulo">Expediente Médico y Salud</h2>
     
     <form role="form" id="formulario" name="formulario" action="javascript:guardar()">
@@ -40,6 +48,7 @@ if (isset($_GET['id'])) {
                                     value="<?php if(isset($_GET['id'])) echo $expedienteData['matricula']; ?>" 
                                     <?php if(isset($_GET['id'])) echo 'disabled'; ?>>
                                 <input type="hidden" name="id" id="id" value="<?php echo isset($_GET['id']) ? $_GET['id'] : ''; ?>">
+                                <input type="hidden" name="acc" id="acc" value="<?php echo isset($_GET['id']) ? '2' : '1'; ?>">
                                 <input type="hidden" name="tipo" id="tipo" value="7">
                             </div>
                         </div>
@@ -162,7 +171,7 @@ if (isset($_GET['id'])) {
 <script type="text/javascript">
 function guardar() {
     $.ajax({
-        url: 'incluido/funciones.php',
+        url: 'include/funciones.php',
         type: 'post',
         data: $('#formulario').serialize(),
         success: function(response) {
@@ -193,14 +202,14 @@ function guardar() {
                         buttons: {
                             'Entendido': function() {
                                 $(this).dialog('close');
-                                document.location = 'listar_expedientes.php'; // O lista de expedientes
+                                document.location = 'listar_expedientes.php';
                             }
                         }
                     });
             }
         },
         error: function(xhr, ajaxOptions, thrownError) {
-            alert(xhr.status);
+            alert('Error ' + xhr.status + ': No se pudo conectar con el servidor');
         }
     });
 }

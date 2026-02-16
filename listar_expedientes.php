@@ -17,9 +17,16 @@ $expedientes = $xml->xpath('//expedientesmedicos/expediente');
         <div class="row">
             <div class="col-12">
                 <h2 class="titulo text-center mb-4">Expedientes Médicos</h2>
-                <a href="expedientesmedicos.php" class="btn btn-success mb-3">
-                    <i class="fas fa-plus"></i> Nuevo Expediente
-                </a>
+                
+                <!-- Botones de navegación -->
+                <div class="mb-3 d-flex justify-content-between">
+                    <a href="index.php" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Menú Principal
+                    </a>
+                    <a href="expedientesmedicos.php" class="btn btn-success">
+                        <i class="fas fa-plus"></i> Nuevo Expediente
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -58,7 +65,7 @@ $expedientes = $xml->xpath('//expedientesmedicos/expediente');
                                     <a href="expedientesmedicos.php?id=<?= $exp['matricula'] ?>" class="btn btn-sm btn-primary" title="Editar">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <a href="incluido/funciones.php?tipo=7&accion=eliminar&matricula=<?= $exp['matricula'] ?>" 
+                                    <a href="include/funciones.php?tipo=7&accion=eliminar&matricula=<?= $exp['matricula'] ?>" 
                                        class="btn btn-sm btn-danger eliminar-btn" title="Eliminar">
                                         <i class="fas fa-trash"></i>
                                     </a>
